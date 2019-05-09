@@ -4,9 +4,11 @@ import com.sxt.core.context.BeanFactory;
 import com.sxt.core.context.BeanInit;
 import com.sxt.core.model.Bean;
 import com.sxt.core.test.service.UserService;
+import com.sxt.core.test.service.impl.UserServiceImpl;
 
 import javax.naming.Name;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,10 @@ public class BeanInitImpl implements BeanInit {
         String[] split = basePagkage.split("\\.");
         try {
                 String base =basePagkage.replaceAll("\\.","\\\\");
-                String path = "D:\\ideaworkspace\\CapOfTea\\src\\main\\java\\"+base;
+            String path = BeanInitImpl.class.getResource("/").getFile()+base;
+            System.out.println(path);
+
+            //String path = "D:\\ideaworkspace\\CapOfTea\\src\\main\\java\\"+base;
                 File f1 = new File(path);
                 System.out.println(f1);
                 if(f1.isDirectory()){
